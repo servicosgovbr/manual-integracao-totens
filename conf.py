@@ -15,8 +15,12 @@ author = 'gov.br'
 
 extensions = []
 
-templates_path = ['_templates']
-exclude_patterns = []
+#templates_path = ['_templates']
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+# This pattern also affects html_static_path and html_extra_path.
+exclude_patterns = ['_build']
 
 language = 'pt'
 
@@ -27,4 +31,4 @@ master_doc = 'index'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+#html_static_path = ['_static']
