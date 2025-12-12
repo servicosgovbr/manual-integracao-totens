@@ -1,20 +1,11 @@
-.. manual-integracao-totens documentation master file, created by
-   sphinx-quickstart on Fri Dec 12 09:55:53 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. Roteiro de Integração de Totens master file
 
-Welcome to manual-integracao-totens's documentation!
-====================================================
+Roteiro de Integração de Totens
+===============================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
+   :caption: Informações Técnicas:
 
+   iniciarintegracaototens
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
