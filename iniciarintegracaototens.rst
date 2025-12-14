@@ -3,6 +3,29 @@ Integração com Totens
 
 **Roteiro de Integração de Aplicação com Leitura de Impressão Digital com Orquestrador de Digitais do gov.br**
 
+Primeiros passos
+----------------
+
+Contato
+~~~~~~~
+
+Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail:
+
+``apoio-sustentacao-id@gestao.gov.br``
+
+Cadastro do Orquestrador na aplicação integrada
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A aplicação integrada precisa fornecer as **credenciais** para os ambientes disponíveis. É necessário fornecer um *Client ID* e uma *Secret* para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as **URIs de retorno**.
+
+============ ========================================================================
+**Ambiente** **URI de Retorno**                                                           
+------------ ------------------------------------------------------------------------
+Staging      https://digitais.staging.acesso.gov.br/redirection-endpoint/{PROVEDOR}  
+
+Produção     https://digitais.acesso.gov.br/redirection-endpoint/{PROVEDOR}           
+============ ========================================================================
+
 
 Contexto de integração com o gov.br
 -----------------------------------
@@ -102,28 +125,6 @@ Formato sugerido:
 
 Uma vez validada a digital, o orquestrador retorna para que o usuário seja autenticado no gov.br.
 
-Primeiros passos
-----------------
-
-Contato
-~~~~~~~
-
-Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail:
-
-``integracaoid@economia.gov.br``
-
-Cadastro do Orquestrador na aplicação integrada
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A aplicação integrada precisa fornecer as **credenciais** para os ambientes disponíveis. É necessário fornecer um *Client ID* e uma *Secret* para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as **URIs de retorno**.
-
-============ ========================================================================
-**Ambiente** **URI de Retorno**                                                           
------------- ------------------------------------------------------------------------
-Staging      https://digitais.staging.acesso.gov.br/redirection-endpoint/{PROVEDOR}  
-
-Produção     https://digitais.acesso.gov.br/redirection-endpoint/{PROVEDOR}           
-============ ========================================================================
 
 Recuperação de conta
 --------------------
@@ -144,4 +145,4 @@ Dúvidas?
 
 Entre em contato conosco através do e-mail:
 
-``integracaoid@economia.gov.br``
+``apoio-sustentacao-id@gestao.gov.br``
