@@ -82,7 +82,7 @@ Exemplo de chamada à URI de autorização:
 ::
 
    302
-   https://www.aplicacao-integrada.gov.br/authorize?response_type=code&scope=openid&redirect_uri=https://biometria.validacao.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}&client_id=orquestrador-gov-br&state=MEU_STATE
+   https://www.aplicacao-integrada.gov.br/authorize?response_type=code&scope=openid&redirect_uri=https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}&client_id=orquestrador-gov-br&state=MEU_STATE
 
 Neste momento o usuário será redirecionado para a aplicação integrada, onde esta realizará o procedimento de leitura física da impressão digital.
 
@@ -108,7 +108,7 @@ Exemplo:
 
    grant_type=code
    client_id=orquestrador-gov-br
-   redirect_uri=https://biometria.validacao.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}
+   redirect_uri=https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}
    code=CODE_RECEBIDO
 
 A aplicação integrada pode disponibilizar a impressão digital lida por meio do *User Info Endpoint*. O resultado deve ser disponibilizado em formato JSON (`RFC 8259`_) contendo a impressão digital em formato WSQ.
