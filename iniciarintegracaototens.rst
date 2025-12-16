@@ -11,7 +11,7 @@ Contato
 
 Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail:
 
-``apoio-sustentacao-id@gestao.gov.br``
+``integracao-totens-govbr@gestao.gov.br``
 
 Cadastro do Orquestrador na aplicação integrada
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -145,4 +145,4 @@ Dúvidas?
 
 Entre em contato conosco através do e-mail:
 
-``apoio-sustentacao-id@gestao.gov.br``
+``integracao-totens-govbr@gestao.gov.br``
