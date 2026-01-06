@@ -4,9 +4,26 @@ Primeiros passos
 Contato
 -------
 
-Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail:
-
+Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail: 
 ``integracao-totens-govbr@gestao.gov.br``
+
+O e-mail deve seguir o padrão:
+
+ - Assunto:
+
+    - Instegração com Totem
+
+ - Conteúdo:
+
+    - Nome do Órgão
+
+    - CNPJ
+
+    - E-mail institucional
+
+    - Nome do sistema Integrado
+
+    - IPs dos dispositivos
 
 Contexto de integração com o gov.br
 ===================================
@@ -19,14 +36,14 @@ No totem haverá um site cliente do gov.br. Nessa integração o gov.br disponib
    :height: 300px
    :align: center
 
-A pessoa ao selecionar a opção de **Login com digital** será redirecionada para o orquestrador de digitais do gov.br em que a mesma fornecerá o seu CPF.
+O cidadão ao selecionar a opção de **Login com digital** será redirecionado para o orquestrador de digitais do gov.br em que o mesmo fornecerá o seu CPF.
 
 .. image:: _images/cpf.png
    :height: 300px
    :align: center
 
-O gov.br valida o CPF e redireciona para a aplicação integrada ao orquestrador. A aplicação realiza a leitura física da impressão digital da pessoa.
+O gov.br valida o CPF e redireciona para a aplicação integrada ao orquestrador. A aplicação realiza a leitura física da impressão digital do cidadão.
 
-Uma vez concluída a leitura, a pessoa é redirecionada de volta para o orquestrador e em seguida é autenticada no site pelo gov.br.
+Uma vez concluída a leitura, o cidadão é redirecionado de volta para o orquestrador e em seguida é autenticado no site pelo gov.br.
 
-Pessoas autenticadas por meio de impressão digital ganham confiabilidade de nível ouro no gov.br.
+Cidadãos autenticados por meio de impressão digital ganham confiabilidade de nível ouro na conta gov.br.
