@@ -4,8 +4,10 @@ Primeiros passos
 Contato
 -------
 
-Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail: 
+Para realizar a integração com o orquestrador de digitais é necessário preencher o Plano de Integração, e enviar para o e-mail: 
 ``integracao-totens-govbr@gestao.gov.br``
+
+`Baixar Roteiro de Integração`_
 
 O e-mail deve seguir o padrão:
 
@@ -24,6 +26,10 @@ O e-mail deve seguir o padrão:
     - Nome do sistema Integrado
 
     - IPs de saída para internet da rede dos Totens
+
+    - Plano de Integração Preenchido
+
+.. _Baixar Roteiro de Integração: _arquivos/RoteiroIntegracaoTotem.docx
 
 Contexto de integração com o gov.br
 ===================================
