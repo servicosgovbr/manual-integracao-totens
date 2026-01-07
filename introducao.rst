@@ -11,7 +11,7 @@ O e-mail deve seguir o padrão:
 
  - Assunto:
 
-    - Instegração com Totem
+    - Integração com Totem
 
  - Conteúdo:
 
