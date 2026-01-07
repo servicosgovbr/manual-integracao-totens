@@ -94,7 +94,7 @@ Uma vez validada a digital, o orquestrador retorna para que o usuário seja aute
 
 
 Recuperação de conta
---------------------
+====================
 
 O gov.br também disponibiliza um fluxo de recuperação de conta que pode ser realizado nos terminais de autoatendimento.
 
