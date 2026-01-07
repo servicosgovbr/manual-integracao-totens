@@ -23,7 +23,7 @@ O e-mail deve seguir o padrão:
 
     - Nome do sistema Integrado
 
-    - IPs dos dispositivos
+    - IPs de saída para internet da rede dos Totens
 
 Contexto de integração com o gov.br
 ===================================
