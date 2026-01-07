@@ -3,8 +3,31 @@ Integração com Totens
 
 **Roteiro de Integração de Aplicação com Leitura de Impressão Digital com Orquestrador de Digitais do gov.br**
 
-Cadastro do Orquestrador na aplicação integrada
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Um pouco sobre OAuth 2.0
+------------------------
+
+A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor.
+
+
+Arquitetura da solução
+----------------------
+
+A arquitetura da solução é composta por três provedores OAuth 2.0 envolvidos: 
+
+- **OAuth gov.br**: aplicação cliente que irá ser autenticar no gov.br; 
+
+- **OAutth orquestrador** de digitais do gov.br: aplicação que valida as digitais que serão capturadas; e  
+
+- **OAuth aplicação integrada**:  Aplicação que será utilizada no terminal de autoatendimento e que realizara a leitura física da digital seguindo o fluxo Authorization Code Flow padrão do protocolo OAuth 2.0 (`RFC 6749`_).
+
+.. _RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749
+
+.. image:: _images/oauth-orquestrador.png
+   :align: center
+
+
+Integração do Orquestrador com o login do Totem
+------------------------------------------------------
 
 A aplicação integrada precisa fornecer as **credenciais** para os ambientes disponíveis. É necessário fornecer um *Client ID* e uma *Secret* para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as **URIs de retorno**.
 
@@ -16,31 +39,10 @@ Staging      https://digitais.staging.acesso.gov.br/redirection-endpoint/{PROVED
 Produção     https://digitais.acesso.gov.br/redirection-endpoint/{PROVEDOR}           
 ============ ========================================================================
 
-
-Aplicação integrada
--------------------
-
-A aplicação que deseja se integrar com o orquestrador de digitais do gov.br precisa necessariamente implementar o fluxo *Authorization Code Flow* padrão do protocolo **OAuth 2.0** (`RFC 6749`_).
-
-.. _RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749
-
-Arquitetura da solução
-----------------------
-
-A arquitetura da solução é composta por três provedores OAuth 2.0 envolvidos: o próprio **gov.br**, o **orquestrador de digitais do gov.br** e a **aplicação integrada**. Esta se integrará com o orquestrador e implementará a leitura física da digital do cidadão.
-
-.. image:: _images/oauth-orquestrador.png
-   :align: center
-
-Um pouco sobre OAuth 2.0
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor.
-
 O fluxo de autorização (*Authorization Code Flow*) consiste resumidamente em dois passos:
 
 1. Authorization Endpoint
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 O orquestrador de digitais será o cliente da aplicação integrada. O orquestrador fará a requisição de autorização (*Authorization Endpoint*). Essa requisição é basicamente um redirecionamento do browser (HTTP 302) para o endpoint de autorização do provedor.
 
@@ -58,7 +60,7 @@ Uma vez que o processo de leitura seja concluído, o provedor retornará para a 
 Em caso de sucesso, o orquestrador realizará posteriormente uma chamada ao *Token Endpoint* no backend.
 
 2. Token Endpoint
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Com o parâmetro **code** recebido, o orquestrador de digitais irá realizar uma chamada para o **Token Endpoint** definido pela aplicação integrada.
 
@@ -100,16 +102,16 @@ O gov.br também disponibiliza um fluxo de recuperação de conta que pode ser r
 
 A aplicação integrada pode manter as mesmas credenciais, sendo necessário apenas cadastrar as URIs abaixo:
 
-============= ================================================================================= =====================================
+============= =============================================================================================================================
 **Ambiente**   **URIs de Retorno**                                                                                         
-------------- --------------------------------------------------------------------------------- -------------------------------------
-Staging       https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{P} https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint/{P}      
-Produção      https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint/{P}         https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint/{P}
-============= ================================================================================= =====================================
+------------- -----------------------------------------------------------------------------------------------------------------------------
+Staging       https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR} 
+Staging       https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}      
+Produção      https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}         
+Produção      https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}
+============= =============================================================================================================================
 
 Dúvidas?
---------
+========
 
-Entre em contato conosco através do e-mail:
-
-``integracao-totens-govbr@gestao.gov.br``
+Entre em contato conosco através do e-mail: ``integracao-totens-govbr@gestao.gov.br``
