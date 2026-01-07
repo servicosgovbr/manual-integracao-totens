@@ -29,7 +29,7 @@ O e-mail deve seguir o padrão:
 
     - Plano de Integração Preenchido
 
-.. _Baixar Roteiro de Integração: _arquivos/RoteiroIntegracaoTotem.docx
+.. _Baixar Roteiro de Integração: arquivos/RoteiroIntegracaoTotem.docx
 
 Contexto de integração com o gov.br
 ===================================
