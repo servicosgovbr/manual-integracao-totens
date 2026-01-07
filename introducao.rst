@@ -42,7 +42,7 @@ No totem haverá um site cliente do gov.br. Nessa integração o gov.br disponib
    :height: 300px
    :align: center
 
-O cidadão ao selecionar a opção de **Login com digital** será redirecionado para o orquestrador de digitais do gov.br em que o mesmo fornecerá o seu CPF.
+O cidadão ao selecionar a opção de **Login com digital** será redirecionado para o orquestrador de digitais do gov.br devendo informar o seu CPF.
 
 .. image:: _images/cpf.png
    :height: 300px
