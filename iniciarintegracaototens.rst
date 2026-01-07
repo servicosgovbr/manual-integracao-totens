@@ -6,7 +6,7 @@ Integração com Totens
 Um pouco sobre OAuth 2.0
 ------------------------
 
-A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor.
+A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor. (`RFC 6749`_)
 
 
 Arquitetura da solução
