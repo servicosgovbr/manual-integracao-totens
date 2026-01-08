@@ -7,7 +7,7 @@ Contato
 Para realizar a integração com o orquestrador de digitais é necessário preencher o Plano de Integração, e enviar para o e-mail: 
 ``integracao-totens-govbr@gestao.gov.br``
 
-`Baixar Roteiro de Integração`_
+`Baixar Plano de Integração`_
 
 O e-mail deve seguir o padrão:
 
@@ -29,7 +29,7 @@ O e-mail deve seguir o padrão:
 
     - Plano de Integração Preenchido
 
-.. _`Baixar Roteiro de Integração`: https://github.com/servicosgovbr/manual-integracao-totens/raw/refs/heads/main/arquivos/RoteiroIntegracaoTotem.docx
+.. _`Baixar Plano de Integração`: https://github.com/servicosgovbr/manual-integracao-totens/raw/refs/heads/main/arquivos/PlanoIntegracaoTotem.docx
 
 Contexto de integração com o gov.br
 ===================================
