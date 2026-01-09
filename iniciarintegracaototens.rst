@@ -128,14 +128,26 @@ A aplicação integrada pode manter as **mesmas credenciais** utilizadas para o 
 
 No fluxo de recuperação de contas no terminal de auto-atendimento o cidadão pode ter a necessidade de trocar a informação de contato (e-mail ou telefone) cadastrada no gov.br e validar esse novo contato. Nesse cenário ele pode precisar validar a sua digital mais de uma vez. Desta forma para o fluxo de recuperação de digitais é necessário cadastrar duas URIs de retorno por ambiente:
 
-============= =============================================================================================================================
-**Ambiente**   **URIs de Retorno**                                                                                         
-------------- -----------------------------------------------------------------------------------------------------------------------------
-Staging       https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR} 
-Staging       https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}      
-Produção      https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}         
-Produção      https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}
-============= =============================================================================================================================
+
+
+URLs de recuperação de conta em ambiente **staging**
+
+================= =============================================================================================================================
+**Função**        **URIs de Retorno**                                                                                         
+----------------- -----------------------------------------------------------------------------------------------------------------------------
+Alterar dados     https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR} 
+Validar dados     https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR} 
+================= =============================================================================================================================
+
+
+URLs de recuperação de conta em ambiente **produção**
+
+================= =============================================================================================================================
+**Função**        **URIs de Retorno**                                                                                         
+----------------- -----------------------------------------------------------------------------------------------------------------------------      
+Alterar dados     https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}         
+Validar dados     https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}
+================= =============================================================================================================================
 
 **Na tela principal de login não existe um link para a recuperação da conta por impressão digital. O link para esse fluxo é disponibilizado para cada aplicação integrada.**
 
