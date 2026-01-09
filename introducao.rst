@@ -1,6 +1,14 @@
 Primeiros passos
 ================
 
+Pré-requisitos
+--------------
+
+Para a integração com o Orquestrador de Digitais do gov.br, é necessário que o órgão solicitante já possua credenciamento junto ao programa `Balcão gov.br`_.
+
+.. _`Balcão gov.br`: https://www.gov.br/governodigital/pt-br/identidade/identidade-digital-para-gestores-publicos/programa-balcao-gov.br
+
+
 Contato
 -------
 
@@ -30,13 +38,6 @@ O e-mail deve seguir o padrão:
     - Plano de Integração Preenchido
 
 .. _`Baixar Plano de Integração`: https://github.com/servicosgovbr/manual-integracao-totens/raw/refs/heads/main/arquivos/PlanoIntegracaoTotem.docx
-
-Pré-requisitos
---------------
-
-Para a integração com o Orquestrador de Digitais do gov.br, é necessário que o órgão solicitante já possua credenciamento junto ao programa `Balcão gov.br`_.
-
-.. _`Balcão gov.br`: https://www.gov.br/governodigital/pt-br/identidade/identidade-digital-para-gestores-publicos/programa-balcao-gov.br
 
 Contexto de integração com o gov.br
 ===================================
