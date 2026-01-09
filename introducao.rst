@@ -48,7 +48,7 @@ O cidadão ao selecionar a opção de **Login com digital** será redirecionado 
    :height: 300px
    :align: center
 
-O gov.br valida o CPF e redireciona para a aplicação integrada ao orquestrador. A aplicação realiza a leitura física da impressão digital do cidadão.
+O gov.br valida o CPF e redireciona para a aplicação integrada ao orquestrador. O totem realiza a leitura física da impressão digital do cidadão.
 
 Uma vez concluída a leitura, o cidadão é redirecionado de volta para o orquestrador e em seguida é autenticado no site pelo gov.br.
 

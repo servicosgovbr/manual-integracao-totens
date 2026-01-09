@@ -6,17 +6,17 @@ Integração com Totens
 Um pouco sobre OAuth 2.0
 ------------------------
 
-A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor. (`RFC 6749`_)
+A aplicação integrada será o provedor (*authorization server*) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor. 
 
 
 Arquitetura da solução
 ----------------------
 
-A arquitetura da solução é composta por três provedores OAuth 2.0 envolvidos: 
+A arquitetura da solução é composta por três provedores OAuth 2.0 (`RFC 6749`_) envolvidos: 
 
 - **OAuth gov.br**: aplicação cliente que irá ser autenticar no gov.br; 
 
-- **OAutth orquestrador** de digitais do gov.br: aplicação que valida as digitais que serão capturadas; e  
+- **OAuth orquestrador de digitais do gov.br**: aplicação que valida as digitais que serão capturadas; e  
 
 - **OAuth aplicação integrada**:  Aplicação que será utilizada no terminal de autoatendimento e que realizara a leitura física da digital seguindo o fluxo Authorization Code Flow padrão do protocolo OAuth 2.0 (`RFC 6749`_).
 
@@ -26,10 +26,12 @@ A arquitetura da solução é composta por três provedores OAuth 2.0 envolvidos
    :align: center
 
 
-Integração do Orquestrador com o login do Totem
-------------------------------------------------------
+Login do Totem
+==============
 
-A aplicação integrada precisa fornecer as **credenciais** para os ambientes disponíveis. É necessário fornecer um *Client ID* e uma *Secret* para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as **URIs de retorno**.
+**Integração do Orquestrador com o Login do Totem**
+
+A aplicação integrada precisa fornecer as **credenciais** para os ambientes disponíveis. É necessário fornecer um **Client ID** e uma **Secret** para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as **URIs de retorno**.
 
 ============ ========================================================================
 **Ambiente** **URI de Retorno**                                                           
@@ -53,11 +55,31 @@ Exemplo de chamada à URI de autorização:
    302
    https://www.aplicacao-integrada.gov.br/authorize?response_type=code&scope=openid&redirect_uri=https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}&client_id=orquestrador-gov-br&state=MEU_STATE
 
+Neste exemplo é passado um parâmetro query **'fingers'** com o valor  igual a 1 (indicador direito). Esse parâmetro mostra que praquele cpf utilizado no totem, a base do governo identificou que existe biometria pelo menos do dedo indicador direito, o que pode auxiliar a aplicação integrada a sugerir a leitura desse dedo em questão para validação da digital posteriormente. Esse parâmetro pode ser passado de forma opcional se a aplicação integrada preferir. 
+
+Tabela de referência para os dedos:
+
+==================== ==========
+**Dedo**             **Valor**
+-------------------- ----------
+POLEGAR_DIREITO      0
+INDICADOR_DIREITO    1
+MEDIO_DIREITO        2
+ANELAR_DIREITO       3
+MINIMO_DIREITO       4
+POLEGAR_ESQUERDO     5
+INDICADOR_ESQUERDO   6
+MEDIO_ESQUERDO       7
+ANELAR_ESQUERDO      8
+MINIMO_ESQUERDO      9
+==================== ==========
+
+
 Neste momento o usuário será redirecionado para a aplicação integrada, onde esta realizará o procedimento de leitura física da impressão digital.
 
-Uma vez que o processo de leitura seja concluído, o provedor retornará para a URI de redirecionamento do orquestrador de digitais com o parâmetro *state*. Em caso de sucesso retornará também um parâmetro *code*, ou *error* caso tenha ocorrido algum erro.
+Uma vez que o processo de leitura seja concluído, o provedor retornará para a URI de redirecionamento do orquestrador de digitais com o parâmetro **state**. Em caso de sucesso retornará também um parâmetro **code**, ou **error** caso tenha ocorrido algum erro.
 
-Em caso de sucesso, o orquestrador realizará posteriormente uma chamada ao *Token Endpoint* no backend.
+Em caso de sucesso, o orquestrador realizará posteriormente uma chamada ao **Token Endpoint** no backend.
 
 2. Token Endpoint
 -----------------
@@ -80,9 +102,11 @@ Exemplo:
    redirect_uri=https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}
    code=CODE_RECEBIDO
 
-A aplicação integrada pode disponibilizar a impressão digital lida por meio do *User Info Endpoint*. O resultado deve ser disponibilizado em formato JSON (`RFC 8259`_) contendo a impressão digital em formato WSQ.
+A aplicação integrada pode disponibilizar a impressão digital lida por meio do **User Info Endpoint**. O resultado deve ser disponibilizado em formato JSON (`RFC 8259`_) contendo a impressão digital em formato `WSQ`_.
 
 .. _RFC 8259: https://datatracker.ietf.org/doc/html/rfc8259
+
+.. _WSQ: https://www.nist.gov/programs-projects/wsq-certification-procedure
 
 Formato sugerido:
 
@@ -100,7 +124,9 @@ Recuperação de conta
 
 O gov.br também disponibiliza um fluxo de recuperação de conta que pode ser realizado nos terminais de autoatendimento.
 
-A aplicação integrada pode manter as mesmas credenciais, sendo necessário apenas cadastrar as URIs abaixo:
+A aplicação integrada pode manter as **mesmas credenciais** utilizadas para o fluxo de **login**.
+
+No fluxo de recuperação de contas no terminal de auto-atendimento o cidadão pode ter a necessidade de trocar a informação de contato (e-mail ou telefone) cadastrada no gov.br e validar esse novo contato. Nesse cenário ele pode precisar validar a sua digital mais de uma vez. Desta forma para o fluxo de recuperação de digitais é necessário cadastrar duas URIs de retorno por ambiente:
 
 ============= =============================================================================================================================
 **Ambiente**   **URIs de Retorno**                                                                                         
@@ -110,6 +136,8 @@ Staging       https://biometria.staging.acesso.gov.br/confirm-new-contact-redire
 Produção      https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}         
 Produção      https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint/{PROVEDOR}
 ============= =============================================================================================================================
+
+**Na tela principal de login não existe um link para a recuperação da conta por impressão digital. O link para esse fluxo é disponibilizado para cada aplicação integrada.**
 
 Dúvidas?
 ========
