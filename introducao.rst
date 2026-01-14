@@ -9,7 +9,7 @@ Para a integração com o Orquestrador de Digitais do gov.br, é necessário que
 .. _`Balcão gov.br`: https://www.gov.br/governodigital/pt-br/identidade/identidade-digital-para-gestores-publicos/programa-balcao-gov.br
 
 
-Contato
+Forma de solicitação
 -------
 
 Para realizar a integração com o orquestrador de digitais é necessário e enviar e-mail para ``integracao-totens-govbr@gestao.gov.br`` , com o seguinte padrão:
