@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integração com Totens &mdash; Documentação Roteiro de Integracão de Totens </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=103ffe9a"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=beaedd51"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="prev" title="Primeiros passos" href="introducao.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Roteiro de Integracão de Totens
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Conceitos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introducao.html">Primeiros passos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introducao.html#contexto-de-integracao-com-o-gov-br">Contexto de integração com o gov.br</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Técnicas:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Integração com Totens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#um-pouco-sobre-oauth-2-0">Um pouco sobre OAuth 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arquitetura-da-solucao">Arquitetura da solução</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#login-do-totem">Login do Totem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#authorization-endpoint">1. Authorization Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#token-endpoint">2. Token Endpoint</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#recuperacao-de-conta">Recuperação de conta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#duvidas">Dúvidas?</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Roteiro de Integracão de Totens</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Integração com Totens</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/iniciarintegracaototens.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="integracao-com-totens">
+<h1>Integração com Totens<a class="headerlink" href="#integracao-com-totens" title="Link to this heading"></a></h1>
+<p><strong>Roteiro de Integração de Aplicação com Leitura de Impressão Digital com Orquestrador de Digitais do gov.br</strong></p>
+<section id="um-pouco-sobre-oauth-2-0">
+<h2>Um pouco sobre OAuth 2.0<a class="headerlink" href="#um-pouco-sobre-oauth-2-0" title="Link to this heading"></a></h2>
+<p>A aplicação integrada será o provedor (<em>authorization server</em>) e o orquestrador de digitais do gov.br será uma aplicação cliente desse provedor.</p>
+</section>
+<section id="arquitetura-da-solucao">
+<h2>Arquitetura da solução<a class="headerlink" href="#arquitetura-da-solucao" title="Link to this heading"></a></h2>
+<p>A arquitetura da solução é composta por três provedores OAuth 2.0 (<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749</a>) envolvidos:</p>
+<ul class="simple">
+<li><p><strong>OAuth gov.br</strong>: aplicação cliente que irá ser autenticar no gov.br;</p></li>
+<li><p><strong>OAuth orquestrador de digitais do gov.br</strong>: aplicação que valida as digitais que serão capturadas; e</p></li>
+<li><p><strong>OAuth aplicação integrada</strong>:  Aplicação que será utilizada no terminal de autoatendimento e que realizara a leitura física da digital seguindo o fluxo Authorization Code Flow padrão do protocolo OAuth 2.0 (<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749</a>).</p></li>
+</ul>
+<img alt="_images/oauth-orquestrador.png" class="align-center" src="_images/oauth-orquestrador.png" />
+</section>
+</section>
+<section id="login-do-totem">
+<h1>Login do Totem<a class="headerlink" href="#login-do-totem" title="Link to this heading"></a></h1>
+<p><strong>Integração do Orquestrador com o Login do Totem</strong></p>
+<p>A aplicação integrada precisa fornecer as <strong>credenciais</strong> para os ambientes disponíveis. É necessário fornecer um <strong>Client ID</strong> e uma <strong>Secret</strong> para que sejam utilizados pelo orquestrador. Também é necessário cadastrar as <strong>URIs de retorno</strong>.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Ambiente</strong></p></td>
+<td><p><strong>URI de Retorno</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Staging</p></td>
+<td><p><a class="reference external" href="https://digitais.staging.acesso.gov.br/redirection-endpoint">https://digitais.staging.acesso.gov.br/redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+<tr class="row-odd"><td><p>Produção</p></td>
+<td><p><a class="reference external" href="https://digitais.acesso.gov.br/redirection-endpoint">https://digitais.acesso.gov.br/redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+</tbody>
+</table>
+<p>O fluxo de autorização (<em>Authorization Code Flow</em>) consiste resumidamente em dois passos:</p>
+<section id="authorization-endpoint">
+<h2>1. Authorization Endpoint<a class="headerlink" href="#authorization-endpoint" title="Link to this heading"></a></h2>
+<p>O orquestrador de digitais será o cliente da aplicação integrada. O orquestrador fará a requisição de autorização (<em>Authorization Endpoint</em>). Essa requisição é basicamente um redirecionamento do browser (HTTP 302) para o endpoint de autorização do provedor.</p>
+<p>Exemplo de chamada à URI de autorização:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>302
+https://www.aplicacao-integrada.gov.br/authorize?response_type=code&amp;scope=openid&amp;redirect_uri=https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint/{PROVEDOR}&amp;client_id=orquestrador-gov-br&amp;state=MEU_STATE
+</pre></div>
+</div>
+<p>Neste exemplo é passado um parâmetro query <strong>“fingers”</strong> com o valor  igual a 1 (indicador direito). Esse parâmetro mostra que praquele cpf utilizado no totem, a base do governo identificou que existe biometria pelo menos do dedo indicador direito, o que pode auxiliar a aplicação integrada a sugerir a leitura desse dedo em questão para validação da digital posteriormente. Esse parâmetro pode ser passado de forma opcional se a aplicação integrada preferir.</p>
+<p>Tabela de referência para os dedos:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Dedo</strong></p></td>
+<td><p><strong>Valor</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>POLEGAR_DIREITO</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>INDICADOR_DIREITO</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>MEDIO_DIREITO</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>ANELAR_DIREITO</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>MINIMO_DIREITO</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>POLEGAR_ESQUERDO</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>INDICADOR_ESQUERDO</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>MEDIO_ESQUERDO</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>ANELAR_ESQUERDO</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>MINIMO_ESQUERDO</p></td>
+<td><p>9</p></td>
+</tr>
+</tbody>
+</table>
+<p>Neste momento o usuário será redirecionado para a aplicação integrada, onde esta realizará o procedimento de leitura física da impressão digital.</p>
+<p>Uma vez que o processo de leitura seja concluído, o provedor retornará para a URI de redirecionamento do orquestrador de digitais com o parâmetro <strong>state</strong>. Em caso de sucesso retornará também um parâmetro <strong>code</strong>, ou <strong>error</strong> caso tenha ocorrido algum erro.</p>
+<p>Em caso de sucesso, o orquestrador realizará posteriormente uma chamada ao <strong>Token Endpoint</strong> no backend.</p>
+</section>
+<section id="token-endpoint">
+<h2>2. Token Endpoint<a class="headerlink" href="#token-endpoint" title="Link to this heading"></a></h2>
+<p>Com o parâmetro <strong>code</strong> recebido, o orquestrador de digitais irá realizar uma chamada para o <strong>Token Endpoint</strong> definido pela aplicação integrada.</p>
+<p>Exemplo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">aplicacao</span><span class="o">-</span><span class="n">integrada</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="n">token</span>
+
+<span class="n">Headers</span><span class="p">:</span>
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Basic</span> <span class="n">base64</span><span class="p">(</span><span class="n">client_id</span><span class="p">:</span><span class="n">secret</span><span class="p">)</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">url</span><span class="o">-</span><span class="n">encoded</span>
+
+<span class="n">grant_type</span><span class="o">=</span><span class="n">code</span>
+<span class="n">client_id</span><span class="o">=</span><span class="n">orquestrador</span><span class="o">-</span><span class="n">gov</span><span class="o">-</span><span class="n">br</span>
+<span class="n">redirect_uri</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">biometria</span><span class="o">.</span><span class="n">staging</span><span class="o">.</span><span class="n">acesso</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="n">enter</span><span class="o">-</span><span class="n">account</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">redirection</span><span class="o">-</span><span class="n">endpoint</span><span class="o">/</span><span class="p">{</span><span class="n">PROVEDOR</span><span class="p">}</span>
+<span class="n">code</span><span class="o">=</span><span class="n">CODE_RECEBIDO</span>
+</pre></div>
+</div>
+<p>A aplicação integrada pode disponibilizar a impressão digital lida por meio do <strong>User Info Endpoint</strong>. O resultado deve ser disponibilizado em formato JSON (<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc8259">RFC 8259</a>) contendo a impressão digital em formato <a class="reference external" href="https://www.nist.gov/programs-projects/wsq-certification-procedure">WSQ</a>.</p>
+<p>Formato sugerido:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;polegar_direito&quot;</span><span class="p">:</span> <span class="s2">&quot;POLEGAR_DIREITO_EM_WSQ&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Uma vez validada a digital, o orquestrador retorna para que o usuário seja autenticado no gov.br.</p>
+</section>
+</section>
+<section id="recuperacao-de-conta">
+<h1>Recuperação de conta<a class="headerlink" href="#recuperacao-de-conta" title="Link to this heading"></a></h1>
+<p>O gov.br também disponibiliza um fluxo de recuperação de conta que pode ser realizado nos terminais de autoatendimento.</p>
+<p>A aplicação integrada pode manter as <strong>mesmas credenciais</strong> utilizadas para o fluxo de <strong>login</strong>.</p>
+<p>No fluxo de recuperação de contas no terminal de auto-atendimento o cidadão pode ter a necessidade de trocar a informação de contato (e-mail ou telefone) cadastrada no gov.br e validar esse novo contato. Nesse cenário ele pode precisar validar a sua digital mais de uma vez. Desta forma para o fluxo de recuperação de digitais é necessário cadastrar duas URIs de retorno por ambiente:</p>
+<p>URLs de recuperação de conta em ambiente <strong>staging</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Função</strong></p></td>
+<td><p><strong>URIs de Retorno</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Alterar dados</p></td>
+<td><p><a class="reference external" href="https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint">https://biometria.staging.acesso.gov.br/enter-account-id-redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validar dados</p></td>
+<td><p><a class="reference external" href="https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint">https://biometria.staging.acesso.gov.br/confirm-new-contact-redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+</tbody>
+</table>
+<p>URLs de recuperação de conta em ambiente <strong>produção</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Função</strong></p></td>
+<td><p><strong>URIs de Retorno</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Alterar dados</p></td>
+<td><p><a class="reference external" href="https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint">https://biometria.acesso.gov.br/enter-account-id-redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validar dados</p></td>
+<td><p><a class="reference external" href="https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint">https://biometria.acesso.gov.br/confirm-new-contact-redirection-endpoint</a>/{PROVEDOR}</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Na tela principal de login não existe um link para a recuperação da conta por impressão digital. O link para esse fluxo é disponibilizado para cada aplicação integrada.</strong></p>
+</section>
+<section id="duvidas">
+<h1>Dúvidas?<a class="headerlink" href="#duvidas" title="Link to this heading"></a></h1>
+<p>Entre em contato conosco através do e-mail: <code class="docutils literal notranslate"><span class="pre">integracao-totens-govbr&#64;gestao.gov.br</span></code></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="introducao.html" class="btn btn-neutral float-left" title="Primeiros passos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, gov.br.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
