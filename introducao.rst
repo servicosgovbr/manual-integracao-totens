@@ -66,4 +66,4 @@ O gov.br valida o CPF e redireciona para a aplicação integrada ao orquestrador
 
 Uma vez concluída a leitura, o cidadão é redirecionado de volta para o orquestrador e em seguida é autenticado no site pelo gov.br.
 
-Cidadãos autenticados por meio de impressão digital ganham confiabilidade de nível ouro na conta gov.br.
+Cidadãos autenticados por meio de impressão digital ganham confiabilidade de nível **ouro** na conta gov.br.
